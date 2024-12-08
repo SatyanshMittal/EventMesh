@@ -1,28 +1,30 @@
 "use client";
+import { useState } from "react";
 import PaymentWidget from "@requestnetwork/payment-widget/react";
 
 export default function PaymentPage() {
+  const [eventName, setEventName] = useState("Test Event");
+  const [eventDescription, setEventDescription] = useState(
+    "Test Event Description",
+  );
+  const [eventPrice, setEventPrice] = useState(1.5);
   return (
     <PaymentWidget
       sellerInfo={{
-        logo: "https://example.com/logo.png",
-        name: "Example Store",
+        logo: "/assets/images/logo-black.png",
+        name: "Event Mesh",
       }}
       productInfo={{
-        name: "Digital Art Collection",
-        description: "A curated collection of digital artworks.",
-        image: "https://example.com/product-image.jpg",
+        name: eventName,
+        description: eventDescription,
+        image: "/assets/images/logo-black.png",
       }}
-      amountInUSD={1.5}
-      sellerAddress="0x1234567890123456789012345678901234567890"
-      supportedCurrencies={[
-        "REQ-mainnet",
-        "ETH-sepolia-sepolia",
-        "USDC-mainnet",
-      ]}
+      amountInUSD={eventPrice}
+      sellerAddress="0xF3205A1fBc393f5205E37A71B29818AaC83ceB34"
+      supportedCurrencies={["ETH-sepolia-sepolia", "USDC-mainnet"]}
       persistRequest={true}
       onPaymentSuccess={(request) => {
-        console.log(request);
+        console.log();
       }}
       onError={(error) => {
         console.error(error);
